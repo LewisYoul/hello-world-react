@@ -18,7 +18,7 @@ export default class App extends Component {
     return(
       <div className="App">
         <h1>My Shop!</h1>
-        <ProductList />
+        <ProductList products={this.state.products}/>
       </div>
     );
   }
