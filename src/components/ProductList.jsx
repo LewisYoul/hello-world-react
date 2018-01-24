@@ -7,7 +7,7 @@ const ProductList = (props) => {
       {
         props.products.map(product => (
         <li key={product.id}>
-          {product.name}
+          Product: {product.name} - Brand: {product.brand}
         </li>
         ))
       }
@@ -16,7 +16,8 @@ const ProductList = (props) => {
 }
 
 ProductList.propTypes = {
-  products: PropTypes.array.isRequired
-}
+  products: PropTypes.array.isRequired,
+  onProductSelect: PropTypes.func.isRequired
+};
 
 export default ProductList;
