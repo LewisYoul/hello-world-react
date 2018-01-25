@@ -36,4 +36,7 @@ describe('App', function() {
   it("Is instantiated with the correct products in state", () => {
     expect(wrapper.state('products')).toEqual(products)
   });
+  it("Is instantiated with 'selectedProducts' and an empty array", () => {
+    expect(wrapper.state('selectedProducts').length).toEqual(0)
+  });
 });
