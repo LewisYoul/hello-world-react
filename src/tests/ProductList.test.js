@@ -15,9 +15,7 @@ beforeEach(() => {
     {id: 3, name: "Mock Product 3", brand: "Mock Brand 3"}
   ]
 
-  productSelectFn = (productSelected) => {
-    console.log('You selected ' + productSelected);
-  }
+  productSelectFn = jest.fn();
 
   wrapper = shallow(
               <ProductList
@@ -27,6 +25,10 @@ beforeEach(() => {
             )
 
 
+});
+
+afterEach(function() {
+  productSelectFn.mockReset();
 });
 
 describe('ProductList', () => {
@@ -40,9 +42,13 @@ describe('ProductList', () => {
   it('should render the brand inside each <li> element', () => {
     expect(wrapper.find('li').first().contains(mockProducts[0].brand)).toEqual(true)
   });
+  it('should not call #props.onProductSelect if it hasnt been clicked', () => {
+    expect(productSelectFn.mock.calls.length).toEqual(0)
+  });
   it('should call #props.onProductSelect when an <li> is clicked', () => {
     const firstEl = wrapper.find('li').first();
     firstEl.simulate('click');
+    expect(productSelectFn.mock.calls.length).toEqual(1)
   });
 
 });
