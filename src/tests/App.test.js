@@ -39,4 +39,9 @@ describe('App', function() {
   it("Is instantiated with 'selectedProducts' and an empty array", () => {
     expect(wrapper.state('selectedProducts').length).toEqual(0)
   });
+  it('Adds the given product to the selectedProducts array when called', () => {
+    let instance = wrapper.instance();
+    instance.handleProductSelect("Shoes")
+    expect(instance.state.selectedProducts[0]).toEqual("Shoes")
+  });
 });
