@@ -35,6 +35,10 @@ describe('App', function() {
     it("Contains an <h1> tag that has the text 'My Shop!'", () => {
       expect(wrapper.find('h1').first().contains("My Shop!")).toEqual(true);
     });
+    it("Renders the number of selected products", () => {
+      wrapper.setState({ selectedProducts: ["one", "two"] })
+      expect(wrapper.find('p').first().contains("You have selected 2 products"))
+    });
   });
 
   describe('#state', () => {
