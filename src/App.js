@@ -30,7 +30,7 @@ export default class App extends Component {
         <p>You have selected {this.state.selectedProducts.length} products</p>
         <ProductList
           products={this.state.products}
-          onProductSelect={this.handleProductSelect.bind(this)}
+          onProductSelect={this.handleProductSelect}
         />
       </div>
     );
