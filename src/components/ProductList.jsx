@@ -1,18 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-const ProductList = (props) => {
-  return(
-    <ul>
-      {
-        props.products.map(product => (
-        <li onClick={() => props.onProductSelect(product)} key={product.id}>
-          Product: {product.name} - Brand: {product.brand}
-        </li>
-        ))
-      }
-    </ul>
-  )
+class ProductList extends Component {
+  constructor(props) {
+    super(props)
+  }
+  render(){
+
+    return(
+      <ul>
+        {
+          this.props.products.map(product => (
+          <li onClick={() => this.props.onProductSelect(product)} key={product.id}>
+            Product: {product.name} - Brand: {product.brand}
+          </li>
+          ))
+        }
+      </ul>
+    )
+  }
 }
 
 ProductList.propTypes = {
