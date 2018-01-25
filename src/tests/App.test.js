@@ -27,21 +27,30 @@ describe('App', function() {
     ReactDOM.render(<App />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
-  it("Contains an <h1> tag", () => {
-    expect(wrapper.find('h1').length).toEqual(1);
+
+  describe('#render', () => {
+    it("Contains an <h1> tag", () => {
+      expect(wrapper.find('h1').length).toEqual(1);
+    });
+    it("Contains an <h1> tag that has the text 'My Shop!'", () => {
+      expect(wrapper.find('h1').first().contains("My Shop!")).toEqual(true);
+    });
   });
-  it("Contains an <h1> tag that has the text 'My Shop!'", () => {
-    expect(wrapper.find('h1').first().contains("My Shop!")).toEqual(true);
+
+  describe('#state', () => {
+    it("Is instantiated with the correct products in state", () => {
+      expect(wrapper.state('products')).toEqual(products)
+    });
+    it("Is instantiated with 'selectedProducts' and an empty array", () => {
+      expect(wrapper.state('selectedProducts').length).toEqual(0)
+    });
   });
-  it("Is instantiated with the correct products in state", () => {
-    expect(wrapper.state('products')).toEqual(products)
-  });
-  it("Is instantiated with 'selectedProducts' and an empty array", () => {
-    expect(wrapper.state('selectedProducts').length).toEqual(0)
-  });
-  it('Adds the given product to the selectedProducts array when called', () => {
-    let instance = wrapper.instance();
-    instance.handleProductSelect("Shoes")
-    expect(instance.state.selectedProducts[0]).toEqual("Shoes")
+
+  describe('#handleProductSelect', () => {
+    it('Adds the given product to the selectedProducts array when called', () => {
+      let instance = wrapper.instance();
+      instance.handleProductSelect("Shoes")
+      expect(instance.state.selectedProducts[0]).toEqual("Shoes")
+    });
   });
 });

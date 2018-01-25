@@ -23,8 +23,6 @@ beforeEach(() => {
                 onProductSelect={productSelectFn}
               />
             )
-
-
 });
 
 afterEach(function() {
@@ -33,22 +31,27 @@ afterEach(function() {
 
 describe('ProductList', () => {
 
-  it('should render each product in a <li> element', () => {
-    expect(wrapper.find('li').length).toEqual(mockProducts.length);
+  describe('#render', () => {
+    it('should render each product in a <li> element', () => {
+      expect(wrapper.find('li').length).toEqual(mockProducts.length);
+    });
+    it('should render the name inside each <li> element', () => {
+      expect(wrapper.find('li').first().contains(mockProducts[0].name)).toEqual(true)
+    });
+    it('should render the brand inside each <li> element', () => {
+      expect(wrapper.find('li').first().contains(mockProducts[0].brand)).toEqual(true)
+    });
   });
-  it('should render the name inside each <li> element', () => {
-    expect(wrapper.find('li').first().contains(mockProducts[0].name)).toEqual(true)
-  });
-  it('should render the brand inside each <li> element', () => {
-    expect(wrapper.find('li').first().contains(mockProducts[0].brand)).toEqual(true)
-  });
-  it('should not call #props.onProductSelect if it hasnt been clicked', () => {
-    expect(productSelectFn.mock.calls.length).toEqual(0)
-  });
-  it('should call #props.onProductSelect when an <li> is clicked', () => {
-    const firstEl = wrapper.find('li').first();
-    firstEl.simulate('click');
-    expect(productSelectFn.mock.calls.length).toEqual(1)
+
+  describe('#this.props.onProductSelect', () => {
+    it('should not call #this.props.onProductSelect if it hasnt been clicked', () => {
+      expect(productSelectFn.mock.calls.length).toEqual(0)
+    });
+    it('should call #this.props.onProductSelect when an <li> is clicked', () => {
+      const firstEl = wrapper.find('li').first();
+      firstEl.simulate('click');
+      expect(productSelectFn.mock.calls.length).toEqual(1)
+    });
   });
 
 });
