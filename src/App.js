@@ -6,6 +6,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      viewBasket: false,
       selectedProducts: [],
       products: [
         {id: 1, name: 'AirMax 90', brand: 'Nike'},
@@ -23,12 +24,19 @@ export default class App extends Component {
     });
   }
 
+  toggleBasket = () => {
+    let oldBasket = this.state.viewBasket
+    this.setState({
+      viewBasket: !oldBasket
+    });
+  }
+
   render() {
     return(
       <div className="App">
         <h1>My Shop!</h1>
         <p>You have selected {this.state.selectedProducts.length} products</p>
-        <a>View Basket</a>
+        <a onClick={this.toggleBasket}>View Basket</a>
         <ProductList
           products={this.state.products}
           onProductSelect={this.handleProductSelect}

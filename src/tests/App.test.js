@@ -47,6 +47,7 @@ describe('App', function() {
   describe('#state', () => {
     it("Is instantiated with the correct products in state", () => {
       expect(wrapper.state('products')).toEqual(products)
+      console.log(wrapper)
     });
     it("Is instantiated with 'selectedProducts' and an empty array", () => {
       expect(wrapper.state('selectedProducts').length).toEqual(0)
@@ -58,6 +59,33 @@ describe('App', function() {
       let instance = wrapper.instance();
       instance.handleProductSelect("Shoes")
       expect(instance.state.selectedProducts[0]).toEqual("Shoes")
+    });
+  });
+
+  describe('#toggleBasket', () => {
+    it("sets 'viewBasket' to be true when triggered", () => {
+      let instance = wrapper.instance();
+      console.log(instance.state)
+      instance.toggleBasket();
+      console.log(instance.state)
+      expect(instance.state.viewBasket).toEqual(true)
+    });
+    it("sets 'viewBasket' to be false when triggered twice", () => {
+      let instance = wrapper.instance();
+      instance.toggleBasket();
+      instance.toggleBasket();
+      expect(instance.state.viewBasket).toEqual(false)
+    });
+  });
+
+  describe("<a>View Basket</a>", () => {
+    it("doesn't render a <div> if not clicked", () => {
+      expect(wrapper.find('.basket').length).toEqual(0)
+    });
+    it("renders a new <div> when clicked", () => {
+      const el = wrapper.find('a');
+      el.simulate('click')
+      expect(wrapper.find('.basket').length).toEqual(1)
     });
   });
 });
