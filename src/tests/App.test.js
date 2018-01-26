@@ -39,6 +39,9 @@ describe('App', function() {
       wrapper.setState({ selectedProducts: ["one", "two"] })
       expect(wrapper.find('p').first().contains("You have selected 2 products"))
     });
+    it("Contains an <a> element with the text 'View Basket'", () => {
+      expect(wrapper.find('a').first().contains("View Basket")).toEqual(true);
+    });
   });
 
   describe('#state', () => {

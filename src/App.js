@@ -28,6 +28,7 @@ export default class App extends Component {
       <div className="App">
         <h1>My Shop!</h1>
         <p>You have selected {this.state.selectedProducts.length} products</p>
+        <a>View Basket</a>
         <ProductList
           products={this.state.products}
           onProductSelect={this.handleProductSelect}
