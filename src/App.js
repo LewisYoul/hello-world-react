@@ -32,11 +32,22 @@ export default class App extends Component {
   }
 
   render() {
+
+    var basket = null
+    if (this.state.viewBasket) {
+      basket = (
+        <div className="basket">
+          Boop
+        </div>
+      )
+    }
+
     return(
       <div className="App">
         <h1>My Shop!</h1>
         <p>You have selected {this.state.selectedProducts.length} products</p>
         <a onClick={this.toggleBasket}>View Basket</a>
+        {basket}
         <ProductList
           products={this.state.products}
           onProductSelect={this.handleProductSelect}
