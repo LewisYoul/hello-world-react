@@ -47,7 +47,6 @@ describe('App', function() {
   describe('#state', () => {
     it("Is instantiated with the correct products in state", () => {
       expect(wrapper.state('products')).toEqual(products)
-      console.log(wrapper)
     });
     it("Is instantiated with 'selectedProducts' and an empty array", () => {
       expect(wrapper.state('selectedProducts').length).toEqual(0)
@@ -65,9 +64,7 @@ describe('App', function() {
   describe('#toggleBasket', () => {
     it("sets 'viewBasket' to be true when triggered", () => {
       let instance = wrapper.instance();
-      console.log(instance.state)
       instance.toggleBasket();
-      console.log(instance.state)
       expect(instance.state.viewBasket).toEqual(true)
     });
     it("sets 'viewBasket' to be false when triggered twice", () => {
